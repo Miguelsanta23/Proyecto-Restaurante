@@ -1,27 +1,37 @@
-namespace Listas;
+namespace Proyecto_Reastaurante.Estructuras;
 
 using System;
-public class ListaEnlazada<T> {
+
+/// Implementación de una lista enlazada genérica
+public class ListaEnlazada<T>
+{
     private Nodo<T> cabeza;
     private Nodo<T> ultimo;
     private int cantidad = 0;
 
+    /// Obtiene el primer nodo de la lista
     public Nodo<T> Cabeza
     {
-		  get {return this.cabeza;}
+        get { return this.cabeza; }
     }
+
+    /// Obtiene el ultimo nodo de la lista
     public Nodo<T> Ultimo
     {
-		  get {return this.ultimo;}
+        get { return this.ultimo; }
     }
+
+    /// Obtiene la cantidad de elementos en la lista
     public int Cantidad
     {
-		  get {return this.cantidad;}
+        get { return this.cantidad; }
     }
+
+    /// Agrega un nuevo elemento al final de la lista
     public void Agregar(T valor)
-    {    
+    {
         cantidad++;
-        if (cabeza == null) 
+        if (cabeza == null)
         {
             cabeza = new Nodo<T>(valor);
             ultimo = cabeza;
@@ -29,7 +39,7 @@ public class ListaEnlazada<T> {
         }
 
         Nodo<T> actual = cabeza;
-        while (actual.Siguiente != null) 
+        while (actual.Siguiente != null)
         {
             actual = actual.Siguiente;
         }
@@ -37,21 +47,23 @@ public class ListaEnlazada<T> {
         ultimo = actual.Siguiente;
     }
 
-    public void Imprimir() 
+    /// Imprime todos los elementos de la lista
+    public void Imprimir()
     {
         Nodo<T> actual = cabeza;
-        while (actual != null) 
+        while (actual != null)
         {
             Console.Write(actual.Valor + " ");
             actual = actual.Siguiente;
         }
     }
-    public void Revertir() 
+    public void Revertir()
     {
         Nodo<T> previo = null;
         Nodo<T> actual = cabeza;
         Nodo<T> siguiente = null;
-        while (actual != null) {
+        while (actual != null)
+        {
             siguiente = actual.Siguiente;
             actual.Siguiente = previo;
             previo = actual;
@@ -59,6 +71,8 @@ public class ListaEnlazada<T> {
         }
         cabeza = previo;
     }
+
+    /// Elimina un elemento de la lista en una posición específica
     public void EliminarPosicion(int posicion)
     {
         if (cabeza == null || posicion < 0)
@@ -97,12 +111,104 @@ public class ListaEnlazada<T> {
         }
     }
 
+    /// Busca un elemento en la lista usando un criterio de comparación
+        /// </summary>
+    public T Buscar(Func<T, bool> criterio)
+    {
+        Nodo<T> actual = cabeza;
+        while (actual != null)
+        {
+            if (criterio(actual.Valor))
+            {
+                return actual.Valor;
+            }
+            actual = actual.Siguiente;
+        }
+        return default(T);
+    }
+
+   
+
+    /// Elimina un elemento que cumple con un criterio específico
+    public bool Eliminar(Func<T, bool> criterio)
+    {
+        if (cabeza == null)
+        {
+            return false;
+        }
+
+        // Si el elemento a eliminar es la cabeza
+        if (criterio(cabeza.Valor))
+        {
+            cabeza = cabeza.Siguiente;
+            cantidad--;
+            if (cabeza == null)
+            {
+                ultimo = null;
+            }
+            return true;
+        }
+
+        Nodo<T> actual = cabeza;
+        while (actual.Siguiente != null)
+        {
+            if (criterio(actual.Siguiente.Valor))
+            {
+                actual.Siguiente = actual.Siguiente.Siguiente;
+                cantidad--;
+                if (actual.Siguiente == null)
+                {
+                    ultimo = actual;
+                }
+                return true;
+            }
+            actual = actual.Siguiente;
+        }
+
+        return false;
+    }
+
+    /// Obtiene un elemento en una posición específica
+    public T ObtenerPorPosicion(int posicion)
+    {
+        if (posicion < 0 || posicion >= cantidad)
+        {
+            return default(T);
+        }
+
+        Nodo<T> actual = cabeza;
+        int contador = 0;
+
+        while (actual != null && contador < posicion)
+        {
+            actual = actual.Siguiente;
+            contador++;
+        }
+
+        return actual != null ? actual.Valor : default(T);
+    }
+
+    /// Verifica si la lista esta vacia
+    public bool EstaVacia()
+    {
+        return cantidad == 0;
+    }
+
+    /// Limpia todos los elementos de la lista
+    public void Limpiar()
+    {
+        cabeza = null;
+        ultimo = null;
+        cantidad = 0;
+    }
+
 
     public int Contar()
     {
         int contador = 0;
         Nodo<T> actual = cabeza;
-        while (actual != null) {
+        while (actual != null)
+        {
             contador++;
             actual = actual.Siguiente;
         }
@@ -111,11 +217,11 @@ public class ListaEnlazada<T> {
     public int ContarElementos()
     {
         int contador = 0;
-        if(cabeza != null)
-            contador=1;
+        if (cabeza != null)
+            contador = 1;
 
         Nodo<T> actual = cabeza;
-        while (actual.Siguiente != null) 
+        while (actual.Siguiente != null)
         {
             actual = actual.Siguiente;
             contador++;
@@ -154,7 +260,7 @@ public class ListaEnlazada<T> {
         nuevoNodo.Siguiente = actual.Siguiente;
         actual.Siguiente = nuevoNodo;
     }
-    
+
 
     /*public void Eliminar(Persona valor) {
         

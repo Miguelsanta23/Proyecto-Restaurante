@@ -1,11 +1,15 @@
-namespace Listas;
+namespace Proyecto_Reastaurante.Estructuras;
+
 using System;
+
+/// Implementacion de una cola generica (FIFO - First In First Out)
 public class Cola<T>
 {
     private Nodo<T> cabeza;
     private Nodo<T> cola;
     private int tamano;
 
+    /// Constructor que inicializa una cola vacia
     public Cola()
     {
         cabeza = null;
@@ -13,6 +17,7 @@ public class Cola<T>
         tamano = 0;
     }
 
+    /// Agrega un elemento al final de la cola
     public void Agregar(T valor)
     {
         Nodo<T> nuevoNodo = new Nodo<T>(valor);
@@ -29,6 +34,7 @@ public class Cola<T>
         tamano++;
     }
 
+    /// Elimina y retorna el primer elemento de la cola
     public void Eliminar()
     {
         if (EstaVacia())
@@ -39,6 +45,7 @@ public class Cola<T>
         tamano--;
     }
 
+    /// Obtiene el primer elemento de la cola sin eliminarlo
     public T Primero()
     {
         if (EstaVacia())
@@ -48,15 +55,19 @@ public class Cola<T>
         return cabeza.Valor;
     }
 
+    /// Obtiene el tamaño actual de la cola
     public int Tamano()
     {
         return tamano;
     }
 
+    /// Verifica si la cola esta vacia
     public bool EstaVacia()
     {
         return tamano == 0;
     }
+
+    /// Imprime todos los elementos de la cola
     public void Imprimir()
     {
         if (EstaVacia())
@@ -74,6 +85,14 @@ public class Cola<T>
             actual = actual.Siguiente;
         }
         Console.WriteLine();
+    }
+
+    /// Limpia todos los elementos de la cola
+    public void Limpiar()
+    {
+        cabeza = null;
+        cola = null;
+        tamano = 0;
     }
 
     /*public void EliminarRepetidos()
