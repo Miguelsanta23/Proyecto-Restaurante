@@ -112,7 +112,6 @@ public class ListaEnlazada<T>
     }
 
     /// Busca un elemento en la lista usando un criterio de comparación
-        /// </summary>
     public T Buscar(Func<T, bool> criterio)
     {
         Nodo<T> actual = cabeza;
