@@ -1,8 +1,8 @@
 namespace Proyecto_Reastaurante.Modelos
 {
+    // Representa un restaurante en el sistema
     public class Restaurante
     {
-        // Representa un restaurante en el sistema
         private string nit;
         private string nombre;
         private string duenio;
@@ -10,12 +10,7 @@ namespace Proyecto_Reastaurante.Modelos
         private string direccion;
 
         // Constructor que crea el restaurante con todos sus datos
-        public Restaurante(
-            string nit,
-            string nombre,
-            string duenio,
-            string celular,
-            string direccion)
+        public Restaurante(string nit, string nombre, string duenio, string celular, string direccion)
         {
             this.nit = nit;
             this.nombre = nombre;
