@@ -48,7 +48,7 @@ namespace Proyecto_Reastaurante.Modelos
         // Retorna la informacion del plato
         public override string ToString()
         {
-            return "Código: " + codigo + "\n" + "Nombre: " + nombre + "\n" + "Descripción: " + descripcion + "\n" + "Precio: $" + precio.ToString("N0");
+            return "Codigo: " + codigo + "\n" + "Nombre: " + nombre + "\n" + "Descripcion: " + descripcion + "\n" + "Precio: $" + precio.ToString("N0");
         }
     }
 }
