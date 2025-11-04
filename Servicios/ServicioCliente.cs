@@ -3,7 +3,7 @@ using Proyecto_Reastaurante.Modelos;
 using Proyecto_Reastaurante.Estructuras;
 using Proyecto_Reastaurante.Utilidades;
 
-namespace SistemaRestaurante.Servicios
+namespace Proyecto_Reastaurante.Servicios
 {
     // Servicio para gestionar clientes
     public class ServicioCliente
