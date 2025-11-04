@@ -1,8 +1,8 @@
 using System;
-using Proyecto_Reastaurante.Modelos;
-using Proyecto_Reastaurante.Estructuras;
+using Proyecto_Restaurante.Modelos;
+using Proyecto_Restaurante.Estructuras;
 
-namespace Proyecto_Reastaurante.Servicios
+namespace Proyecto_Restaurante.Servicios
 {
     // Servicio para gestionar pedidos
     public class ServicioPedido
@@ -94,6 +94,153 @@ namespace Proyecto_Reastaurante.Servicios
             Console.WriteLine("\nPedido confirmado y agregado exitosamente");
             Console.WriteLine(pedido.ToString());
             return true;
+        }
+
+        // Despacha el siguiente pedido en la cola
+        public bool DespacharPedido()
+        {
+            if (colaPedidos.EstaVacia())
+            {
+                Console.WriteLine("No hay pedidos pendientes para despachar");
+                return false;
+            }
+
+            Pedido pedido = colaPedidos.Desencolar();
+            pedido.MarcarDespachado();
+
+            // Agregar platos al historial
+            Nodo<PlatoPedido> actual = pedido.Platos.Cabeza;
+            while (actual != null)
+            {
+                string infoPlato = actual.Valor.NombrePlato + " x" + actual.Valor.Cantidad;
+                historialPlatos.Apilar(infoPlato);
+                actual = actual.Siguiente;
+            }
+
+            // Sumar a ganancias del dia
+            gananciasDelDia = gananciasDelDia + pedido.Total;
+
+            Console.WriteLine("\n===== PEDIDO DESPACHADO =====");
+            Console.WriteLine(pedido.ToString());
+            Console.WriteLine("Fecha: " + pedido.FechaHora.ToString("dd/MM/yyyy HH:mm"));
+            Console.WriteLine("\nPlatos despachados:");
+            MostrarPlatosPedido(pedido);
+
+            return true;
+        }
+
+        // Muestra los platos de un pedido
+        private void MostrarPlatosPedido(Pedido pedido)
+        {
+            Nodo<PlatoPedido> actual = pedido.Platos.Cabeza;
+            while (actual != null)
+            {
+                Console.WriteLine("  - " + actual.Valor.ToString());
+                actual = actual.Siguiente;
+            }
+        }
+
+        // Muestra los pedidos pendientes en la cola
+        public void MostrarPedidosPendientes()
+        {
+            if (colaPedidos.EstaVacia())
+            {
+                Console.WriteLine("No hay pedidos pendientes");
+                return;
+            }
+
+            Console.WriteLine("\n===== PEDIDOS PENDIENTES =====");
+            Console.WriteLine("Total en cola: " + colaPedidos.Tamano());
+            colaPedidos.Imprimir();
+        }
+
+        // Obtiene las ganancias del dia
+        public decimal ObtenerGananciasDelDia()
+        {
+            return gananciasDelDia;
+        }
+
+        // Muestra el historial de platos servidos
+        public void MostrarHistorialPlatos()
+        {
+            if (historialPlatos.EstaVacia())
+            {
+                Console.WriteLine("No hay platos en el historial");
+                return;
+            }
+
+            Console.WriteLine("\n===== HISTORIAL DE PLATOS SERVIDOS =====");
+            historialPlatos.Imprimir();
+        }
+
+        // Verifica si un cliente tiene pedidos pendientes
+        public bool ClienteTienePedidosPendientes(string cedula)
+        {
+            Nodo<Pedido> actual = todosPedidos.Cabeza;
+            while (actual != null)
+            {
+                if (actual.Valor.CedulaCliente == cedula && actual.Valor.Estado == "PENDIENTE")
+                {
+                    return true;
+                }
+                actual = actual.Siguiente;
+            }
+            return false;
+        }
+
+        // Verifica si un plato está en pedidos pendientes
+        public bool PlatoEnPedidosPendientes(string codigoPlato)
+        {
+            Nodo<Pedido> actual = todosPedidos.Cabeza;
+            while (actual != null)
+            {
+                if (actual.Valor.Estado == "PENDIENTE")
+                {
+                    Nodo<PlatoPedido> actualPlato = actual.Valor.Platos.Cabeza;
+                    while (actualPlato != null)
+                    {
+                        if (actualPlato.Valor.CodigoPlato == codigoPlato)
+                        {
+                            return true;
+                        }
+                        actualPlato = actualPlato.Siguiente;
+                    }
+                }
+                actual = actual.Siguiente;
+            }
+            return false;
+        }
+
+        // Lista todos los pedidos
+        public void ListarTodosPedidos()
+        {
+            if (todosPedidos.EstaVacia())
+            {
+                Console.WriteLine("No hay pedidos registrados");
+                return;
+            }
+
+            Console.WriteLine("\n===== TODOS LOS PEDIDOS =====");
+            Nodo<Pedido> actual = todosPedidos.Cabeza;
+            int contador = 1;
+
+            while (actual != null)
+            {
+                Pedido p = actual.Valor;
+                Console.WriteLine("\n" + contador + ". " + p.ToString());
+                Console.WriteLine("   Fecha: " + p.FechaHora.ToString("dd/MM/yyyy HH:mm"));
+                Console.WriteLine("   Platos:");
+                
+                Nodo<PlatoPedido> actualPlato = p.Platos.Cabeza;
+                while (actualPlato != null)
+                {
+                    Console.WriteLine("      - " + actualPlato.Valor.ToString());
+                    actualPlato = actualPlato.Siguiente;
+                }
+                
+                actual = actual.Siguiente;
+                contador++;
+            }
         }
     }
 }

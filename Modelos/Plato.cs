@@ -1,4 +1,4 @@
-namespace Proyecto_Reastaurante.Modelos
+namespace Proyecto_Restaurante.Modelos
 {
     // Representa un plato del menu del restaurante
     public class Plato

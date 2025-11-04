@@ -1,4 +1,4 @@
-namespace Proyecto_Reastaurante.Estructuras;
+namespace Proyecto_Restaurante.Estructuras;
 
 using System;
 
@@ -35,14 +35,23 @@ public class Cola<T>
     }
 
     /// Elimina y retorna el primer elemento de la cola
-    public void Eliminar()
+    public T Desencolar()
     {
         if (EstaVacia())
         {
-            throw new InvalidOperationException("La cola está vacía.");
+            throw new InvalidOperationException("La cola está vacia");
         }
+        
+        T valor = cabeza.Valor;
         cabeza = cabeza.Siguiente;
         tamano--;
+        
+        if (cabeza == null)
+        {
+            cola = null;
+        }
+        
+        return valor;
     }
 
     /// Obtiene el primer elemento de la cola sin eliminarlo

@@ -1,4 +1,4 @@
-namespace Proyecto_Reastaurante.Modelos
+namespace Proyecto_Restaurante.Modelos
 {
     // Representa un plato dentro de un pedido con su cantidad
     public class PlatoPedido

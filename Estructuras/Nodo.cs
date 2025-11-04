@@ -1,4 +1,4 @@
-namespace Proyecto_Reastaurante.Estructuras;
+namespace Proyecto_Restaurante.Estructuras;
 
 /// Representa un nodo generico para estructuras de datos enlazadas
 public class Nodo<T>

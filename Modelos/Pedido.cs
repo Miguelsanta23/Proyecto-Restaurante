@@ -1,7 +1,7 @@
 using System;
-using Proyecto_Reastaurante.Estructuras;
+using Proyecto_Restaurante.Estructuras;
 
-namespace Proyecto_Reastaurante.Modelos
+namespace Proyecto_Restaurante.Modelos
 {
     // Representa un pedido realizado por un cliente
     public class Pedido

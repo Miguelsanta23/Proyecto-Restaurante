@@ -1,4 +1,4 @@
-namespace Proyecto_Reastaurante.Estructuras;
+namespace Proyecto_Restaurante.Estructuras;
 
 using System;
 
@@ -32,6 +32,12 @@ public class Pila<T>
         tamano++;
     }
 
+    /// Agrega un elemento a la cima de la pila 
+    public void Apilar(T valor)
+    {
+        AgregarElemento(valor);
+    }
+
     /// Se elimina el ultimo elemento agregado a la pila
     public void EliminarElemento()
     {
@@ -42,7 +48,7 @@ public class Pila<T>
         }
     }
 
-    /// Se Impprime la pila de arriba a abajo
+    /// Se Imprime la pila de arriba a abajo
     public void ImprimirPila()
     {
         Nodo<T> nodoActual = cima;
@@ -52,6 +58,12 @@ public class Pila<T>
             nodoActual = nodoActual.Siguiente;
         }
         Console.WriteLine();
+    }
+
+    /// Imprime la pila 
+    public void Imprimir()
+    {
+        ImprimirPila();
     }
 
     /// Se imprime la pila de abajo a arriba
@@ -66,5 +78,11 @@ public class Pila<T>
         }
 
         pilaAuxiliar.ImprimirPila();
+    }
+
+    /// Verifica si la pila esta vacia
+    public bool EstaVacia()
+    {
+        return tamano == 0;
     }
 }

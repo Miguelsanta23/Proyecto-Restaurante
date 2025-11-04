@@ -1,4 +1,4 @@
-namespace Proyecto_Reastaurante.Modelos
+namespace Proyecto_Restaurante.Modelos
 {
     // Representa un cliente del restaurante
     public class Cliente

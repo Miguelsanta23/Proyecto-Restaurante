@@ -1,6 +1,6 @@
 using System;
 
-namespace Proyecto_Reastaurante.Utilidades
+namespace Proyecto_Restaurante.Utilidades
 {
     // Clase que contiene metodos de validación para diferentes campos
     public class Validaciones

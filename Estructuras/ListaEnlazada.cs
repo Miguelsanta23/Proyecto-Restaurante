@@ -1,4 +1,4 @@
-namespace Proyecto_Reastaurante.Estructuras;
+namespace Proyecto_Restaurante.Estructuras;
 
 using System;
 
