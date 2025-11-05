@@ -57,7 +57,7 @@ namespace Proyecto_Restaurante.Modelos
         // Retorna la informacion del restaurante
         public override string ToString()
         {
-            return "NIT: " + nit + "/n" + "Nombre: " + nombre + "/n" + "Dueño: " + duenio + "/n" + "Celular: " + celular + "/n" + "Direccion: " + direccion;
+            return "NIT: " + nit + "\n" + "Nombre: " + nombre + "\n" + "Dueño: " + duenio + "\n" + "Celular: " + celular + "\n" + "Direccion: " + direccion;
         }
     }
 }

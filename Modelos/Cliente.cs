@@ -48,7 +48,7 @@ namespace Proyecto_Restaurante.Modelos
         // Retorna la informacion del cliente
         public override string ToString()
         {
-            return "Cedula: " + cedula + "/n" + "Nombre: " + nombreCompleto + "/n" + "Celular: " + celular + "/n" + "Email: " + email;
+            return "Cedula: " + cedula + "\n" + "Nombre: " + nombreCompleto + "\n" + "Celular: " + celular + "\n" + "Email: " + email;
         }
     }
 }

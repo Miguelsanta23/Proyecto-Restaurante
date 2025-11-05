@@ -101,7 +101,7 @@ namespace Proyecto_Restaurante.Modelos
         // Retorna la informacion del pedido del pedido
         public override string ToString()
         {
-            return "Pedido #" + idPedido + "/n" + "Cliente: " + nombreCliente + "/n" + "Total: $" + total.ToString("N0") + "/n" + "Estado: " + estado;
+            return "Pedido #" + idPedido + "\n" + "Cliente: " + nombreCliente + "\n" + "Total: $" + total.ToString("N0") + "\n" + "Estado: " + estado;
         }
     }
 }
