@@ -150,9 +150,49 @@ Crear Plato
     Borrar Plato
         Importante: Solo se pueden borrar platos que NO esten en pedidos pendientes
 
+5. Gestion de Pedidos
+Tomar Pedido
+    Este es el proceso completo para crear un pedido:
+
+    Seleccionar "4. Gestion de Pedidos"
+    Seleccionar "1. Tomar Pedido"
+    Seleccionar el cliente por cedula
+    Ver el menu de platos disponibles
+    Agregar platos al pedido:
+        Ingresar codigo del plato
+        Ingresar cantidad
+        Repetir para agregar mas platos
+
+    Ver resumen del pedido con el total
+    Confirmar el pedido
+    ![Tomar Pedido](ImagenesReadme/tomarPedido.png)
+
+    Despachar Pedido
+        Seleccionar "2. Despachar Pedido"
+        El sistema despachara el PRIMER pedido de la cola (FIFO)
+        El pedido cambia a estado "DESPACHADO"
+        Se suma al total de ganancias del día
+        Los platos se agregan al historial
+        ![Pedido Despachado](ImagenesReadme/pedidoDespachado.png)
+
+    Ver Pedidos Pendientes
+        Muestra la cola de pedidos que estan esperando ser despachados
+        ![Pedido Pendiente](ImagenesReadme/pedidoPendiente.png)
+
+    Ver Todos los Pedidos
+        Lista todos los pedidos (pendientes y despachados) con su informacion completa
+        ![Todos los Pedidos](ImagenesReadme/todosLosPedidos.png)
 
 
+6. Reportes
+Ganancias del Dia
+    Muestra el total de dinero ganado en el dia actual (suma de todos los pedidos despachados)
+    ![Ganancias del Dia](ImagenesReadme/gananciasDia.png)
 
+    Historial de Platos Servidos
+        Muestra una pila con los ultimos platos servidos (LIFO - Last In, First Out)
+        ![Historial Platos](ImagenesReadme/historialPlatos.png)
+    
 
 Validaciones y Reglas de Negocio
 Validaciones Implementadas
